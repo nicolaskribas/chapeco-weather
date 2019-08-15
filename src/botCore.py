@@ -12,8 +12,8 @@ url = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/"+CITY_KEY+"?a
 def getForecast():
     r = requests.get(url).json()
 
-    phraseDay = r["DailyForecasts"][0]["Day"]["ShortPhrase"].lower()
-    phraseNight = r["DailyForecasts"][0]["Night"]["ShortPhrase"].lower()
+    phraseDay = r["DailyForecasts"][0]["Day"]["LongPhrase"].lower()
+    phraseNight = r["DailyForecasts"][0]["Night"]["LongPhrase"].lower()
     rainProbabilityDay = r["DailyForecasts"][0]["Day"]["RainProbability"]
     rainProbabilityNight = r["DailyForecasts"][0]["Night"]["RainProbability"]
     rainVolumeDay = r["DailyForecasts"][0]["Day"]["Rain"]["Value"]
