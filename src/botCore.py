@@ -42,7 +42,7 @@ def getForecast():
 
     forecastDay = "Durante o dia: "+phraseDay+rainDay
     forecastNight = "À noite: "+phraseNight+rainNight
-    
+
     return temperature+forecastDay+forecastNight
 
 def tweet(api):
@@ -53,7 +53,7 @@ def main():
     auth = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
     auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
     api = tweepy.API(auth)
-    schedule.every().minute.do(tweet, api)
+    schedule.every().day.at("06:00").do(tweet, api)
     while True:
         schedule.run_pending()
         time.sleep(1)
