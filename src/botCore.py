@@ -14,10 +14,10 @@ def getForecast():
 
     phraseDay = r["DailyForecasts"][0]["Day"]["LongPhrase"].lower()
     phraseNight = r["DailyForecasts"][0]["Night"]["LongPhrase"].lower()
-    rainProbabilityDay = r["DailyForecasts"][0]["Day"]["RainProbability"]
-    rainProbabilityNight = r["DailyForecasts"][0]["Night"]["RainProbability"]
-    rainVolumeDay = r["DailyForecasts"][0]["Day"]["Rain"]["Value"]
-    rainVolumeNight = r["DailyForecasts"][0]["Night"]["Rain"]["Value"]
+    rainProbabilityDay = round(r["DailyForecasts"][0]["Day"]["RainProbability"])
+    rainProbabilityNight = round(r["DailyForecasts"][0]["Night"]["RainProbability"])
+    rainVolumeDay = round(r["DailyForecasts"][0]["Day"]["Rain"]["Value"])
+    rainVolumeNight = round(r["DailyForecasts"][0]["Night"]["Rain"]["Value"])
     min = round(r["DailyForecasts"][0]["Temperature"]["Minimum"]["Value"])
     max = round(r["DailyForecasts"][0]["Temperature"]["Maximum"]["Value"])
     minFeel = round(r["DailyForecasts"][0]["RealFeelTemperature"]["Minimum"]["Value"])
@@ -30,12 +30,12 @@ def getForecast():
     else:
         temperature = "Temperaturas entre "+str(min)+"°C e "+str(max)+"°C.\n"
 
-    if rainProbabilityDay != 0:
-        rainDay = " com "+str(rainProbabilityDay)+"% de chance de chuva com um volume de "+str(rainVolumeDay)+"mm.\n"
+    if rainProbabilityDay != 0 and rainVolumeDay != 0:
+        rainDay = " com "+str(rainProbabilityDay)+"% de chance de chuva e um volume de "+str(rainVolumeDay)+"mm.\n"
     else:
         rainDay = ".\n"
 
-    if rainProbabilityNight != 0:
+    if rainProbabilityNight != 0 and rainVolumeNight != 0:
         rainNight = " com "+str(rainProbabilityNight)+"% de chance de chuva e um volume de "+str(rainVolumeNight)+"mm."
     else:
         rainNight = "."
