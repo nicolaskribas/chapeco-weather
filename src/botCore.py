@@ -22,10 +22,12 @@ def getForecast():
     max = round(r["DailyForecasts"][0]["Temperature"]["Maximum"]["Value"])
     minFeel = round(r["DailyForecasts"][0]["RealFeelTemperature"]["Minimum"]["Value"])
     maxFeel = round(r["DailyForecasts"][0]["RealFeelTemperature"]["Maximum"]["Value"])
+    difMin = min - minFeel
+    difMax = maxFeel - max
 
-    if min <= 5:
+    if difMin >= difMax and difMin >= 2:
         temperature = "Temperaturas entre "+str(min)+"°C e "+str(max)+"°C, sensação termica de até "+str(minFeel)+"°C.\n"
-    elif max >= 30:
+    elif difMax >= difMin and difMax >= 2:
         temperature = "Temperaturas entre "+str(min)+"°C e "+str(max)+"°C, sensação termica de até "+str(maxFeel)+"°C.\n"
     else:
         temperature = "Temperaturas entre "+str(min)+"°C e "+str(max)+"°C.\n"
